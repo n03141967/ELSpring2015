@@ -1,0 +1,9 @@
+N03141967 - Assigment
+
+I tried to use the wifi usb adapter but it isn't working. The Wifi adapter just refuse to work.
+I use the ethernet cable to connect to the internet. 
+
+To set up the wifi connection I verify the actives interfaces : sudo cat /etc/network/interface
+
+and I configurate the file  /etc/wpa_supplicant/wpa_supplicant.conf with informations to connect to the SUNY network.
+
