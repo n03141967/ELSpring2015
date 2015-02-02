@@ -1,7 +1,7 @@
 N03141967 - Assigment
 
 I tried to use the wifi usb adapter but it isn't working. The Wifi adapter just refuse to work.
-I use the ethernet cable to connect to the internet. 
+I use the ethernet cable to connect to the internet. After using the cable the Wifi Adapter decided to work... 
 
 To set up the wifi connection I verify the actives interfaces : sudo cat /etc/network/interface
 
