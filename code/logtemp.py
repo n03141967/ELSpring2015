@@ -14,27 +14,26 @@ con = None
     Returns a list [time, tempC, tempF] """
 
 def readTemp():
-	tempfile = open("/sys/bus/w1/devices/28-00000697426f/w1_slave
-")
+	tempfile = open("/sys/bus/w1/devices/28-00000697426f/w1_slave")
 	tempfile_text = tempfile.read()
 	currentTime=time.strftime('%x %X %Z')
 	tempfile.close()
 	tempC=float(tempfile_text.split("\n")[1].split("t=")[1])/1000
 	tempF=tempC*9.0/5.0+32.0
-try:
-    con = mydb.connect('temperature.db')
-    cur = con.cursor()    
-    cur.execute("INSERT INTO TempData VALUES(?,?,?)",(currentTime,tempC,tempF))
-       return [currentTime, tempC, tempF]             
-except mydb.Error, e:
+		try:
+		con = mydb.connect('temperature.db')
+		cur = con.cursor()    
+		cur.execute("INSERT INTO TempData VALUES(?,?,?)",(currentTime,tempC,tempF))
+		msg=( "Today %s: Current temperature is:%s \n temperature logged." currentTime,tempC,tempF)             
+		except mydb.Error, e:
     
-    print "Error %s:" % e.args[0]
-    sys.exit(1)
+  
+			sys.exit(1)
     
-finally:
+		finally:
     
-    if con:
-        con.close()
+			if con:
+				con.close()
 
-
+	return [msg]
 print readTemp()
