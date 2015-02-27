@@ -20,17 +20,17 @@ def readTemp():
 	tempfile.close()
 	tempC=float(tempfile_text.split("\n")[1].split("t=")[1])/1000
 	tempF=tempC*9.0/5.0+32.0
-		try:
+	try:
 		con = mydb.connect('temperature.db')
 		cur = con.cursor()    
 		cur.execute("INSERT INTO TempData VALUES(?,?,?)",(currentTime,tempC,tempF))
-		msg=( "Today %s: Current temperature is:%s \n temperature logged." currentTime,tempC,tempF)             
-		except mydb.Error, e:
+		msg=( "Today"+currentTime+" Current temperature C: "+repr(tempC)+" Current temperature F: "+repr(tempF)+" Temperature logged")          
+	except mydb.Error, e:
     
   
 			sys.exit(1)
     
-		finally:
+	finally:
     
 			if con:
 				con.close()
