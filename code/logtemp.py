@@ -24,15 +24,15 @@ def readTemp():
 		con = mydb.connect('temperature.db')
 		cur = con.cursor()    
 		cur.execute("INSERT INTO TempData VALUES(?,?,?)",(currentTime,tempC,tempF))
-		msg=( "Today %s: Current temperature is:%s \n temperature logged." currentTime,tempC,tempF)             
+		msg='Today: ',currentTime,'Temp C:',tempC,' TempF: ',tempF             
 	except mydb.Error, e:
-		msg="Erro ao inserir na tabela";
-  
-			sys.exit(1)
+		print "Erro ao inserir na tabela";
+  		sys.exit(1)
     
 	finally:
     
 			if con:
+  				con.commit()
 				con.close()
 
 	return [msg]
