@@ -21,7 +21,7 @@ def readTemp():
 	tempC=float(tempfile_text.split("\n")[1].split("t=")[1])/1000
 	tempF=tempC*9.0/5.0+32.0
 	try:
-		con = mydb.connect('temperature.db')
+		con = mydb.connect('../misc/temperature.db')
 		cur = con.cursor()    
 		cur.execute("INSERT INTO TempData VALUES(?,?,?)",(currentTime,tempC,tempF))
 		msg='Today: ',currentTime,'Temp C:',tempC,' TempF: ',tempF             
